@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Kyle Hall">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <meta name="theme-color" content="#FF00FF">
+    <link rel="stylesheet" href="/static/superstyles.css">
+    <title>Router</title>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/contact/">Contact</a></li>
+        <li><a href="/misc/">Misc</a></li>
+      </ul>
+    </nav>
+
+    <sc-view class="view-home" route="^/$">Home</sc-view>
+    <sc-view class="view-about" route="^/about/(.*)">About</sc-view>
+    <sc-view class="view-contact" route="^/contact/(.*)">Contact</sc-view>
+    <sc-view class="view-misc" route="^/home/(.*)">Misc</sc-view>
+
+    <sc-router></sc-router>
+    <script src="/static/sc-view.js" charset="utf-8"></script>
+    <script src="/static/sc-router.js" charset="utf-8"></script>
+
+    <script type="text/javascript">
+      const router = document.querySelectorAll('sc-router');
+
+      function onClick(evt) {
+        evt.preventDefault();
+        router.go(evt.target.href);
+      }
+
+      for (let link of document.querySelectorAll('nav a')) {
+        link.addEventListener('click', onClick);
+      }
+    </script>
+  </body>
+</html>
